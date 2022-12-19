@@ -32,11 +32,6 @@ jobs:
 
     - name: Checkout code
       uses: actions/checkout@v2
-      with: 
-        ssh-key: ${{ secrets.SSH_KEY }}
-        repository: dumunari/gitops-essentials
-        ref: 'application-set'
-        github_token: ${{secrets.GITHUB_TOKEN}}
 
     - name: Setup Kustomize
       uses: imranismail/setup-kustomize@v1
@@ -47,7 +42,7 @@ jobs:
       env:
         DOCKER_USERNAME: ${{secrets.DOCKERHUB_USER}}
       run: |
-        cd apps/go-web-server
+        cd k8s
         kustomize edit set image go-web-server=$DOCKER_USERNAME/go-web-server:$GITHUB_SHA
 
     - name: Commit new tag
@@ -59,7 +54,5 @@ jobs:
     - name: Push
       uses: ad-m/github-push-action@master
       with: 
-        ssh: true
-        repository: dumunari/gitops-essentials
-        branch: 'application-set'
+        repository: dumunari/go-web-server
         github_token: ${{ secrets.GITHUB_TOKEN }}
