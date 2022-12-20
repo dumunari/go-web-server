@@ -1,5 +1,5 @@
 image:
-  repository: dumunari/go-web-server
+  repository: emunari/go-web-server
   pullPolicy: IfNotPresent
   tag: 2ee724ec8e7aa9644ec4d766db7b95afb0cc4e61
 

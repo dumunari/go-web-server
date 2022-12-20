@@ -1,5 +1,5 @@
 image:
-  repository: dumunari/go-web-server
+  repository: emunari/go-web-server
   pullPolicy: IfNotPresent
   tag: latest
 
