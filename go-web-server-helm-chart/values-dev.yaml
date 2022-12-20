@@ -1,7 +1,7 @@
 image:
   repository: emunari/go-web-server
   pullPolicy: IfNotPresent
-  tag: 940c317aa9d22cc843c2dd70dc82966ac5735b70
+  tag: 45c82d9d1ac844e69c4611c0928f0d50544f3784
 
 service:
   port: 8000
