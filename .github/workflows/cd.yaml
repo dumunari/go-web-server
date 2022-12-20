@@ -33,13 +33,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Update Kubernetes Resources
-      env:
-        DOCKER_USERNAME: ${{secrets.DOCKERHUB_USER}}
-      run: |
-        cd k8s
-        kustomize edit set image go-web-server=$DOCKER_USERNAME/go-web-server:$GITHUB_SHA
-
     - name: Update image tag on values file and commit changes
       run: |
         sed -ie "s/tag:.*/tag: ${{github.sha}}/g" go-web-server-helm-chart/values-dev.yaml 
