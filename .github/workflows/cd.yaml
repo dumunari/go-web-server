@@ -13,6 +13,10 @@ jobs:
 
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: appset-helm
+        repository: dumunari/go-web-server
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and push
       uses: docker/build-push-action@v1.1.0
@@ -32,6 +36,10 @@ jobs:
 
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: appset-helm
+        repository: dumunari/go-web-server
+        github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Update image tag on values file and commit changes
       run: |
@@ -43,5 +51,6 @@ jobs:
     - name: Push
       uses: ad-m/github-push-action@master
       with: 
+        branch: appset-helm
         repository: dumunari/go-web-server
         github_token: ${{ secrets.GITHUB_TOKEN }}
