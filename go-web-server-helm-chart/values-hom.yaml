@@ -1,0 +1,7 @@
+image:
+  repository: dumunari/go-web-server
+  pullPolicy: IfNotPresent
+  tag: latest
+
+service:
+  port: 8000
