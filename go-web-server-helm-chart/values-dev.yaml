@@ -1,7 +1,7 @@
 image:
   repository: dumunari/go-web-server
   pullPolicy: IfNotPresent
-  tag: 3bedad7d7e0119e5847da1a9f2cbfdfb06c2ba02
+  tag: 2ee724ec8e7aa9644ec4d766db7b95afb0cc4e61
 
 service:
   port: 8000
