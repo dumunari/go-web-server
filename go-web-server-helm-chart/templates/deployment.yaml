@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: go-web-server
-        image: {{ .Values.image.repository }}-{{ .Values.image.tag }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
         ports:
         - containerPort: {{ .Values.service.port }}
