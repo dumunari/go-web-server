@@ -1,3 +1,5 @@
+namespace: ephemeral
+
 image:
   repository: emunari/go-web-server
   pullPolicy: IfNotPresent
