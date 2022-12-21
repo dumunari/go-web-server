@@ -2,7 +2,7 @@ name: CD Workflow
 
 on:
   push:
-    branches: [appset-helm]
+    branches: [appset-helm-deps]
 
 jobs:
   build:
@@ -13,10 +13,10 @@ jobs:
 
     - name: Checkout code
       uses: actions/checkout@v2
-      with:
-        ref: appset-helm
-        repository: dumunari/go-web-server
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+      # with:
+      #   ref: ${{ github.ref }}
+      #   repository: dumunari/go-web-server
+      #   github_token: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Build and push
       uses: docker/build-push-action@v1.1.0
@@ -25,32 +25,3 @@ jobs:
         password: ${{secrets.DOCKERHUB_PASSWD}}
         repository: ${{secrets.DOCKERHUB_USER}}/go-web-server
         tags: ${{github.sha}}, latest
-
-  update:
-    name: Update GO Web Server tag on values file
-    needs: 
-      - build
-    runs-on: ubuntu-latest
-
-    steps:
-
-    - name: Checkout code
-      uses: actions/checkout@v2
-      with:
-        ref: appset-helm
-        repository: dumunari/go-web-server
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Update image tag on values file and commit changes
-      run: |
-        sed -ie "s/tag:.*/tag: ${{github.sha}}/g" go-web-server-helm-chart/values-dev.yaml 
-        git config --local user.email "action@github.com"
-        git config --local user.name "[Go Web Server] Auto Trigger"
-        git commit -am "Bump Go Web Server version"
-
-    - name: Push
-      uses: ad-m/github-push-action@master
-      with: 
-        branch: appset-helm
-        repository: dumunari/go-web-server
-        github_token: ${{ secrets.GITHUB_TOKEN }}
