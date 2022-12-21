@@ -1,0 +1,9 @@
+namespace: ephemeral
+
+image:
+  repository: emunari/go-web-server
+  pullPolicy: IfNotPresent
+  ephemeralTag: 940c317aa9d22cc843c2dd70dc82966ac5735b70
+
+service:
+  port: 8000

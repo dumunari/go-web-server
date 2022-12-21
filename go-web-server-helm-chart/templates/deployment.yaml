@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-web-server
+spec:
+  selector:
+    matchLabels:
+      app: go-web-server
+  template:
+    metadata:
+      labels:
+        app: go-web-server
+    spec:
+      containers:
+      - name: go-web-server
+        image: {{ .Values.image.repository }}:{{ .Values.image.ephemeralTag }}
+        ports:
+        - containerPort: {{ .Values.service.port }}
